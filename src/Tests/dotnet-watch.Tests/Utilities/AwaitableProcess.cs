@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
@@ -51,6 +52,8 @@ namespace Microsoft.DotNet.Watcher.Tools
             var processStartInfo = _spec.GetProcessStartInfo();
             processStartInfo.RedirectStandardOutput = true;
             processStartInfo.RedirectStandardError = true;
+            processStartInfo.StandardOutputEncoding = Encoding.UTF8;
+            processStartInfo.StandardErrorEncoding = Encoding.UTF8;
             processStartInfo.Environment["DOTNET_SKIP_FIRST_TIME_EXPERIENCE"] = "true";
 
             _process = new Process
